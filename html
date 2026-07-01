@@ -197,6 +197,9 @@
       padding: 25px 0 45px;
       gap: 25px;
     }
+    .hero-text {
+      flex: 1 1 300px;
+    }
     .hero-text h2 {
       font-size: 2.8rem;
       line-height: 1.2;
@@ -231,7 +234,7 @@
       background: #1f1b10;
       border-radius: 20px;
       min-height: 280px;
-      background-image: url('https://placehold.co/600x400/3d341c/d4af37?text=Ismail+Heritage+Cloth');
+      background-image: url('https://images.unsplash.com/photo-1601924994987-69e26d50dc26?w=600&h=400&fit=crop');
       background-size: cover;
       background-position: center;
       box-shadow: 0 20px 35px black;
@@ -282,14 +285,14 @@
       position: relative;
     }
 
-    /* free placeholder images from placehold.co */
-    .img1 { background-image: url('https://placehold.co/400x300/4a3b1f/d4af37?text=Royal+Kaftan'); }
-    .img2 { background-image: url('https://placehold.co/400x300/5c4a2b/d4af37?text=Brass+Lantern'); }
-    .img3 { background-image: url('https://placehold.co/400x300/3e321a/d4af37?text=Silk+Abaya'); }
-    .img4 { background-image: url('https://placehold.co/400x300/6b562c/d4af37?text=Embroidered+Shawl'); }
-    .img5 { background-image: url('https://placehold.co/400x300/4d3c1c/d4af37?text=Ceramic+Vase'); }
-    .img6 { background-image: url('https://placehold.co/400x300/5a4522/d4af37?text=Thobe'); }
-    .img7 { background-image: url('https://placehold.co/400x300/3b2e14/d4af37?text=Copper+Tray'); }
+    /* Free placeholder images from Unsplash (reliable CDN) */
+    .img1 { background-image: url('https://images.unsplash.com/photo-1590701833281-e6283af0948d?w=400&h=300&fit=crop'); }
+    .img2 { background-image: url('https://images.unsplash.com/photo-1604881991720-f91add269bed?w=400&h=300&fit=crop'); }
+    .img3 { background-image: url('https://images.unsplash.com/photo-1581044777550-4cfa60707c03?w=400&h=300&fit=crop'); }
+    .img4 { background-image: url('https://images.unsplash.com/photo-1617952236317-0bd127407984?w=400&h=300&fit=crop'); }
+    .img5 { background-image: url('https://images.unsplash.com/photo-1578898887932-dce23a595ad4?w=400&h=300&fit=crop'); }
+    .img6 { background-image: url('https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=400&h=300&fit=crop'); }
+    .img7 { background-image: url('https://images.unsplash.com/photo-1606722590583-6951b5ea92ad?w=400&h=300&fit=crop'); }
 
     .card-content {
       padding: 18px;
@@ -340,6 +343,9 @@
       color: #d4af37;
       width: 22px;
     }
+    .contact-info p {
+      margin: 14px 0;
+    }
     .contact-form input, .contact-form textarea {
       background: #1f1b0e;
       border: 1px solid #5e4d28;
@@ -348,12 +354,14 @@
       color: #f0e6c5;
       width: 100%;
       margin-bottom: 12px;
+      font-family: inherit;
     }
     footer {
       text-align: center;
       padding: 30px;
       border-top: 1px solid rgba(212,175,55,0.3);
       margin-top: 30px;
+      color: #aa8c40;
     }
 
     @media (max-width: 480px) {
@@ -465,7 +473,7 @@
       <h2 class="section-title">About Ismail</h2>
       <p class="subtitle">Legacy since 1982</p>
       <div style="display: flex; flex-wrap: wrap; gap: 25px; align-items: center;">
-        <div style="flex:1 1 250px; min-height:200px; background-image:url('https://placehold.co/400x300/2e2818/d4af37?text=Craftsmanship'); background-size:cover; border-radius:20px;"></div>
+        <div style="flex:1 1 250px; min-height:200px; background-image:url('https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=400&h=300&fit=crop'); background-size:cover; border-radius:20px;"></div>
         <div style="flex:2 1 350px;"><p style="font-size:1.2rem; color:#cfbc82;">Generations of textile artistry. Each piece tells a story of tradition with a golden touch.</p></div>
       </div>
     </section>
@@ -517,7 +525,7 @@
       });
     });
 
-    // smooth scroll for anchor links
+    // smooth scroll
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function(e) {
         const href = this.getAttribute('href');
