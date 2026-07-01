@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+  <title>Ismail | Traditional Cloth & Souvenir</title>
+  <!-- Font Awesome 6 free icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #0a0a0a;
+      font-family: 'Segoe UI', 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+      color: #e8e0d3;
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+
+    /* premium golden background */
+    .golden-bg {
+      background: radial-gradient(circle at 30% 10%, #2a2416, #0d0b06);
+      background-attachment: fixed;
+      position: relative;
+    }
+
+    .golden-bg::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400"><path d="M0 200 Q100 0 200 200 T400 200" fill="none" stroke="rgba(212,175,55,0.07)" stroke-width="1.2"/><path d="M0 250 Q150 50 250 250 T400 250" fill="none" stroke="rgba(212,175,55,0.04)" stroke-width="0.8"/></svg>');
+      background-size: 280px 280px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 0 20px;
+      position: relative;
+      z-index: 2;
+    }
+
+    h1, h2, h3, .gold-text {
+      background: linear-gradient(180deg, #f9e076 0%, #c6a23a 50%, #aa8529 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+
+    /* ===== MOBILE SIDE NAVIGATION ===== */
+    .mobile-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 0;
+      border-bottom: 1px solid rgba(212, 175, 55, 0.35);
+      position: relative;
+      z-index: 15;
+    }
+
+    .logo h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+    }
+    .logo p {
+      font-size: 0.7rem;
+      color: #bfa055;
+      letter-spacing: 3px;
+      margin-top: -4px;
+    }
+
+    .hamburger {
+      font-size: 2rem;
+      color: #d4af37;
+      cursor: pointer;
+      background: transparent;
+      border: none;
+      display: block;
+    }
+
+    /* Side navigation overlay */
+    .side-nav {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 75%;
+      max-width: 320px;
+      height: 100vh;
+      background: rgba(8, 7, 3, 0.97);
+      backdrop-filter: blur(20px);
+      box-shadow: -8px 0 30px rgba(0,0,0,0.9);
+      border-left: 1px solid rgba(212,175,55,0.5);
+      z-index: 1000;
+      transition: right 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+      padding: 30px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .side-nav.active {
+      right: 0;
+    }
+
+    .close-nav {
+      align-self: flex-end;
+      font-size: 2rem;
+      color: #d4af37;
+      background: none;
+      border: none;
+      cursor: pointer;
+      margin-bottom: 20px;
+    }
+
+    .side-nav a {
+      color: #e3d5b8;
+      text-decoration: none;
+      font-size: 1.4rem;
+      font-weight: 500;
+      letter-spacing: 2px;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(212,175,55,0.2);
+      display: block;
+      transition: 0.2s;
+    }
+
+    .side-nav a:hover, .side-nav a.active-link {
+      color: #d4af37;
+      padding-left: 10px;
+    }
+
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.7);
+      z-index: 999;
+      display: none;
+      transition: opacity 0.3s;
+    }
+
+    .overlay.show {
+      display: block;
+    }
+
+    /* Desktop nav hidden on mobile, shown via side menu */
+    .desktop-nav {
+      display: none;
+    }
+
+    @media (min-width: 769px) {
+      .hamburger {
+        display: none;
+      }
+      .desktop-nav {
+        display: flex;
+        gap: 2.2rem;
+        list-style: none;
+      }
+      .desktop-nav a {
+        color: #e3d5b8;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 1rem;
+        letter-spacing: 1px;
+        transition: 0.3s;
+      }
+      .desktop-nav a:hover {
+        color: #d4af37;
+      }
+      .mobile-header {
+        border-bottom: none;
+      }
+    }
+
+    /* Hero */
+    .hero {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      padding: 25px 0 45px;
+      gap: 25px;
+    }
+    .hero-text h2 {
+      font-size: 2.8rem;
+      line-height: 1.2;
+      margin-bottom: 15px;
+    }
+    .hero-text p {
+      font-size: 1.1rem;
+      color: #cdba7a;
+      margin-bottom: 25px;
+    }
+    .btn-gold {
+      background: linear-gradient(145deg, #d4af37, #b4942e);
+      border: none;
+      padding: 14px 32px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #0a0a0a;
+      border-radius: 6px;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(212,175,55,0.3);
+      transition: 0.3s;
+      display: inline-block;
+      text-decoration: none;
+    }
+    .btn-gold:hover {
+      background: #e5c254;
+      box-shadow: 0 12px 28px rgba(212,175,55,0.5);
+    }
+    .hero-image {
+      flex: 1 1 350px;
+      background: #1f1b10;
+      border-radius: 20px;
+      min-height: 280px;
+      background-image: url('https://placehold.co/600x400/3d341c/d4af37?text=Ismail+Heritage+Cloth');
+      background-size: cover;
+      background-position: center;
+      box-shadow: 0 20px 35px black;
+    }
+
+    .section-title {
+      font-size: 2.4rem;
+      text-align: center;
+      margin: 30px 0 10px;
+    }
+    .subtitle {
+      text-align: center;
+      color: #b49450;
+      margin-bottom: 35px;
+    }
+
+    /* MODERN CLICKABLE CARDS */
+    .product-grid, .shop-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 28px;
+      margin: 20px 0;
+    }
+
+    .card {
+      background: rgba(18, 16, 9, 0.8);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      border-radius: 20px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      box-shadow: 0 15px 25px rgba(0,0,0,0.6);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      border-color: #d4af37;
+      box-shadow: 0 22px 35px rgba(212,175,55,0.25);
+    }
+
+    .card-img {
+      height: 240px;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+
+    /* free placeholder images from placehold.co */
+    .img1 { background-image: url('https://placehold.co/400x300/4a3b1f/d4af37?text=Royal+Kaftan'); }
+    .img2 { background-image: url('https://placehold.co/400x300/5c4a2b/d4af37?text=Brass+Lantern'); }
+    .img3 { background-image: url('https://placehold.co/400x300/3e321a/d4af37?text=Silk+Abaya'); }
+    .img4 { background-image: url('https://placehold.co/400x300/6b562c/d4af37?text=Embroidered+Shawl'); }
+    .img5 { background-image: url('https://placehold.co/400x300/4d3c1c/d4af37?text=Ceramic+Vase'); }
+    .img6 { background-image: url('https://placehold.co/400x300/5a4522/d4af37?text=Thobe'); }
+    .img7 { background-image: url('https://placehold.co/400x300/3b2e14/d4af37?text=Copper+Tray'); }
+
+    .card-content {
+      padding: 18px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .card-content h3 {
+      font-size: 1.3rem;
+      margin-bottom: 5px;
+    }
+    .price {
+      color: #d4af37;
+      font-weight: bold;
+      font-size: 1.3rem;
+      margin: 10px 0;
+    }
+    .add-cart {
+      background: transparent;
+      border: 1px solid #d4af37;
+      color: #d4af37;
+      padding: 10px;
+      border-radius: 30px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s;
+      margin-top: auto;
+      width: 100%;
+      text-align: center;
+    }
+    .add-cart:hover {
+      background: #d4af37;
+      color: #0a0a0a;
+    }
+
+    .contact-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      background: rgba(10,8,4,0.8);
+      backdrop-filter: blur(12px);
+      border: 1px solid #d4af3750;
+      border-radius: 24px;
+      padding: 30px;
+      margin: 25px 0;
+    }
+    .contact-info i {
+      color: #d4af37;
+      width: 22px;
+    }
+    .contact-form input, .contact-form textarea {
+      background: #1f1b0e;
+      border: 1px solid #5e4d28;
+      padding: 14px;
+      border-radius: 10px;
+      color: #f0e6c5;
+      width: 100%;
+      margin-bottom: 12px;
+    }
+    footer {
+      text-align: center;
+      padding: 30px;
+      border-top: 1px solid rgba(212,175,55,0.3);
+      margin-top: 30px;
+    }
+
+    @media (max-width: 480px) {
+      .hero-text h2 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body class="golden-bg">
+  <div class="container">
+    <!-- Mobile friendly header with hamburger -->
+    <div class="mobile-header">
+      <div class="logo">
+        <h1>Ismail</h1>
+        <p>Traditional Cloth & Souvenir</p>
+      </div>
+      <button class="hamburger" id="hamburgerBtn" aria-label="Menu">&#9776;</button>
+      <!-- Desktop nav hidden on mobile -->
+      <ul class="desktop-nav">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#shop">Online Shop</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#about">About</a></li>
+      </ul>
+    </div>
+
+    <!-- Side Navigation Slide -->
+    <div class="overlay" id="overlay"></div>
+    <nav class="side-nav" id="sideNav">
+      <button class="close-nav" id="closeNav">&times;</button>
+      <a href="#home" class="active-link">Home</a>
+      <a href="#shop">Online Shop</a>
+      <a href="#contact">Contact</a>
+      <a href="#about">About</a>
+      <a href="#"><i class="fas fa-shopping-bag"></i> Cart (0)</a>
+    </nav>
+
+    <!-- Home Section -->
+    <section id="home">
+      <div class="hero">
+        <div class="hero-text">
+          <h2>Heritage Woven in Gold</h2>
+          <p>Discover exquisite traditional attire and artisan souvenirs.</p>
+          <a href="#shop" class="btn-gold">Explore Collection</a>
+        </div>
+        <div class="hero-image" aria-label="Traditional cloth display"></div>
+      </div>
+
+      <h2 class="section-title">Featured Treasures</h2>
+      <p class="subtitle">Click on any card for details</p>
+      <div class="product-grid">
+        <div class="card" onclick="alert('Royal Kaftan - Premium gold embroidery')">
+          <div class="card-img img1"></div>
+          <div class="card-content">
+            <h3>Royal Kaftan</h3>
+            <p>Gold embroidery</p>
+            <div class="price">$189.00</div>
+            <button class="add-cart" onclick="event.stopPropagation(); alert('Added to cart!')"><i class="fas fa-cart-plus"></i> Add</button>
+          </div>
+        </div>
+        <div class="card" onclick="alert('Brass Lantern - Hand etched')">
+          <div class="card-img img2"></div>
+          <div class="card-content">
+            <h3>Brass Lantern</h3>
+            <p>Hand etched</p>
+            <div class="price">$74.50</div>
+            <button class="add-cart" onclick="event.stopPropagation(); alert('Added to cart!')">Add</button>
+          </div>
+        </div>
+        <div class="card" onclick="alert('Silk Abaya - Midnight black')">
+          <div class="card-img img3"></div>
+          <div class="card-content">
+            <h3>Silk Abaya</h3>
+            <p>Midnight black</p>
+            <div class="price">$210.00</div>
+            <button class="add-cart" onclick="event.stopPropagation(); alert('Added to cart!')">Add</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Online Shop -->
+    <section id="shop">
+      <h2 class="section-title">Online Shop</h2>
+      <p class="subtitle">Click card for quick view</p>
+      <div class="shop-grid">
+        <div class="card" onclick="alert('Embroidered Shawl - Cashmere blend')">
+          <div class="card-img img4"></div>
+          <div class="card-content"><h3>Embroidered Shawl</h3><p>Cashmere blend</p><div class="price">$135.00</div><button class="add-cart" onclick="event.stopPropagation(); alert('Added!')">Add</button></div>
+        </div>
+        <div class="card" onclick="alert('Ceramic Vase - Geometric motifs')">
+          <div class="card-img img5"></div>
+          <div class="card-content"><h3>Ceramic Vase</h3><p>Geometric motifs</p><div class="price">$58.00</div><button class="add-cart" onclick="event.stopPropagation(); alert('Added!')">Add</button></div>
+        </div>
+        <div class="card" onclick="alert("Men's Thobe - Linen comfort")">
+          <div class="card-img img6"></div>
+          <div class="card-content"><h3>Men's Thobe</h3><p>Linen comfort</p><div class="price">$165.00</div><button class="add-cart" onclick="event.stopPropagation(); alert('Added!')">Add</button></div>
+        </div>
+        <div class="card" onclick="alert('Copper Tray - Hand hammered')">
+          <div class="card-img img7"></div>
+          <div class="card-content"><h3>Copper Tray</h3><p>Hand hammered</p><div class="price">$92.00</div><button class="add-cart" onclick="event.stopPropagation(); alert('Added!')">Add</button></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about">
+      <h2 class="section-title">About Ismail</h2>
+      <p class="subtitle">Legacy since 1982</p>
+      <div style="display: flex; flex-wrap: wrap; gap: 25px; align-items: center;">
+        <div style="flex:1 1 250px; min-height:200px; background-image:url('https://placehold.co/400x300/2e2818/d4af37?text=Craftsmanship'); background-size:cover; border-radius:20px;"></div>
+        <div style="flex:2 1 350px;"><p style="font-size:1.2rem; color:#cfbc82;">Generations of textile artistry. Each piece tells a story of tradition with a golden touch.</p></div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <h2 class="section-title">Contact Us</h2>
+      <div class="contact-wrapper">
+        <div class="contact-info">
+          <p><i class="fas fa-map-marker-alt"></i> Grand Bazaar, Istanbul</p>
+          <p><i class="fas fa-phone"></i> +90 555 123 45 67</p>
+          <p><i class="fas fa-envelope"></i> info@ismailcloth.com</p>
+        </div>
+        <form class="contact-form" style="flex:1;">
+          <input type="text" placeholder="Your Name" required>
+          <input type="email" placeholder="Email">
+          <textarea rows="4" placeholder="Message"></textarea>
+          <button type="submit" class="btn-gold">Send Message</button>
+        </form>
+      </div>
+    </section>
+
+    <footer>© 2026 Ismail Traditional Cloth & Souvenir — Golden Heritage.</footer>
+  </div>
+
+  <!-- Side navigation toggle script -->
+  <script>
+    const hamburger = document.getElementById('hamburgerBtn');
+    const sideNav = document.getElementById('sideNav');
+    const overlay = document.getElementById('overlay');
+    const closeNav = document.getElementById('closeNav');
+    const navLinks = document.querySelectorAll('.side-nav a');
+
+    function openNav() {
+      sideNav.classList.add('active');
+      overlay.classList.add('show');
+    }
+    function closeNavMenu() {
+      sideNav.classList.remove('active');
+      overlay.classList.remove('show');
+    }
+
+    hamburger.addEventListener('click', openNav);
+    closeNav.addEventListener('click', closeNavMenu);
+    overlay.addEventListener('click', closeNavMenu);
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        closeNavMenu();
+      });
+    });
+
+    // smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (href === "#") return;
+        const target = document.querySelector(href);
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
